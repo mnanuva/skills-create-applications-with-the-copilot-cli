@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require('../calculator');
+const { add, subtract, multiply, divide, modulo, power, squareRoot } = require('../calculator');
 
 describe('calculator functions', () => {
   test('addition: 2 + 3 = 5', () => {
@@ -32,5 +32,30 @@ describe('calculator functions', () => {
   test('floating point operations', () => {
     expect(add(0.1, 0.2)).toBeCloseTo(0.30000000000000004);
     expect(divide(1, 3)).toBeCloseTo(0.3333333333333333);
+  });
+
+  // Extended operations from the feature request / image
+  test('modulo: 5 % 2 = 1', () => {
+    expect(modulo(5, 2)).toBe(1);
+  });
+
+  test('modulo by zero throws', () => {
+    expect(() => modulo(5, 0)).toThrow(/division by zero/);
+  });
+
+  test('power: 2 ^ 3 = 8', () => {
+    expect(power(2, 3)).toBe(8);
+  });
+
+  test('power with negative exponent', () => {
+    expect(power(2, -3)).toBeCloseTo(1 / 8);
+  });
+
+  test('squareRoot: sqrt(16) = 4', () => {
+    expect(squareRoot(16)).toBe(4);
+  });
+
+  test('squareRoot of negative number throws', () => {
+    expect(() => squareRoot(-9)).toThrow(/square root of negative number/);
   });
 });
